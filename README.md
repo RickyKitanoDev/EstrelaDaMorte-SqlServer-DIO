@@ -21,9 +21,9 @@
 #### INSTRUÇÃO PARA CRIAR A TABELA DE PILOTOS
 #### CREATE TABLE [Pilotos]
 ##### (
-##### 	[IdPiloto] INT NOT NULL,
-##### 	[Nome] VARCHAR(200) NOT NULL,
-##### 	[AnoNascimento] VARCHAR(10) NOT NULL,
+##### 	[IdPiloto] INT NOT NULL ,
+##### 	[Nome] VARCHAR(200) NOT NULL ,
+##### 	[AnoNascimento] VARCHAR(10) NOT NULL ,
 ##### 	[IdPlaneta] INT NOT NULL
 ##### )
 ##### GO  
@@ -32,51 +32,51 @@
 ##### ALTER TABLE [Pilotos] ADD CONSTRAINT FK_Pilotos_Planetas FOREIGN KEY ([IdPlaneta])
 ##### REFERENCES [Planetas] ([IdPlaneta])
 ---------------------------------------------------------------------------------------------------------------------------------------
---INSTRUÇÃO PARA CRIAR A TABELA NAVES
-CREATE TABLE [Naves](
-	[IdNave] int NOT NULL,
-	[Nome] varchar(100) NOT NULL,
-	[Modelo] varchar(150) NOT NULL,
-	[Passageiros] int NOT NULL,
-	[Carga] float NOT NULL,
-	[Classe] varchar(100) NOT NULL,
-)
-GO
-ALTER TABLE Naves ADD CONSTRAINT PK_Naves PRIMARY KEY (IdNave);
-GO
+#### INSTRUÇÃO PARA CRIAR A TABELA NAVES
+#### CREATE TABLE [Naves]  
+##### (
+#####	[IdNave] int NOT NULL ,
+#####	[Nome] varchar(100) NOT NULL ,
+#####	[Modelo] varchar(150) NOT NULL ,
+#####	[Passageiros] int NOT NULL ,
+#####	[Carga] float NOT NULL ,
+#####	[Classe] varchar(100) NOT NULL
+##### )
+##### GO
+##### ALTER TABLE Naves ADD CONSTRAINT PK_Naves PRIMARY KEY (IdNave);
+##### GO
 -------------------------------------------------------------------------------------------------------------------------------------------
---INSTRUÇÃO PARA CRIAR A TABELA PILOTOS NAVES<br><br>
-### CREATE TABLE [PilotosNaves]
-(
-	[IdPiloto] INT NOT NULL <br>,
-	[IdNave] INT NOT NULL,<br>
-	[FlagAutorizado] BIT NOT NULL<br>
-)
-GO
-ALTER TABLE [PilotosNaves] ADD CONSTRAINT [PK_PilotosNaves] PRIMARY KEY ([IdPiloto],[IdNave]);
-GO
-ALTER TABLE [PilotosNaves] ADD CONSTRAINT [FK_PilotosNaves_Pilotos] FOREIGN KEY ([IdPiloto])
-REFERENCES [Pilotos] ([IdPiloto])
-GO
-ALTER TABLE [PilotosNaves] ADD CONSTRAINT [FK_PilotosNaves_Naves] FOREIGN KEY ([IdNave])
-REFERENCES [Naves] ([IdNave])
-GO
-ALTER TABLE [PilotosNaves] ADD CONSTRAINT DF_PilotosNaves_FlagAutorizado DEFAULT (1) FOR [FlagAutorizado]
-GO
+#### INSTRUÇÃO PARA CRIAR A TABELA PILOTOS NAVES<br><br>
+#### CREATE TABLE [PilotosNaves]
+##### (
+#####  [IdPiloto] INT NOT NULL ,
+#####  [IdNave] INT NOT NULL ,
+#####  [FlagAutorizado] BIT NOT NULL  
+##### )
+##### GO
+##### ALTER TABLE [PilotosNaves] ADD CONSTRAINT [PK_PilotosNaves] PRIMARY KEY ([IdPiloto],[IdNave]);
+##### GO  
+##### ALTER TABLE [PilotosNaves] ADD CONSTRAINT [FK_PilotosNaves_Pilotos] FOREIGN KEY ([IdPiloto])
+##### REFERENCES [Pilotos] ([IdPiloto])
+##### GO  
+##### ALTER TABLE [PilotosNaves] ADD CONSTRAINT [FK_PilotosNaves_Naves] FOREIGN KEY ([IdNave])
+##### REFERENCES [Naves] ([IdNave])
+##### GO  
+##### ALTER TABLE [PilotosNaves] ADD CONSTRAINT DF_PilotosNaves_FlagAutorizado DEFAULT (1) FOR [FlagAutorizado]
+##### GO
 --------------------------------------------------------------------------------------------------------------------------------------------
---INSTRUÇÃO PARA CRIAR A TABELA HISTORICO VIAGENS
+####INSTRUÇÃO PARA CRIAR A TABELA HISTORICO VIAGENS
+####CREATE TABLE [HistoricoViagens]
+##### (
+#####  [IdNave] INT NOT NULL ,
+#####  [IdPiloto] INT NOT NULL ,
+#####  [DtSaida] DATETIME NOT NULL ,
+#####  [DtChegada] DATETIME  NULL
+##### )
+##### GO
 
-CREATE TABLE [HistoricoViagens]
-(
-	[IdNave] INT NOT NULL,
-	[IdPiloto] INT NOT NULL,
-	[DtSaida] DATETIME NOT NULL,
-	[DtChegada] DATETIME  NULL
-)
-GO
-
-ALTER TABLE [HistoricoViagens] ADD CONSTRAINT [FK_HistoricoViagens_PilotosNaves] FOREIGN KEY([IdPiloto], [IdNave])
-REFERENCES [PilotosNaves] ([IdPiloto], [IdNave])
-GO
-ALTER TABLE [HistoricoViagens] CHECK CONSTRAINT FK_HistoricoViagens_PilotosNaves
-GO
+##### ALTER TABLE [HistoricoViagens] ADD CONSTRAINT [FK_HistoricoViagens_PilotosNaves] FOREIGN KEY([IdPiloto], [IdNave])
+##### REFERENCES [PilotosNaves] ([IdPiloto], [IdNave])
+##### GO
+##### ALTER TABLE [HistoricoViagens] CHECK CONSTRAINT FK_HistoricoViagens_PilotosNaves
+##### GO
