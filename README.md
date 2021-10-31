@@ -65,8 +65,8 @@
 ##### ALTER TABLE [PilotosNaves] ADD CONSTRAINT DF_PilotosNaves_FlagAutorizado DEFAULT (1) FOR [FlagAutorizado]
 ##### GO
 --------------------------------------------------------------------------------------------------------------------------------------------
-####INSTRUÇÃO PARA CRIAR A TABELA HISTORICO VIAGENS
-####CREATE TABLE [HistoricoViagens]
+#### INSTRUÇÃO PARA CRIAR A TABELA HISTORICO VIAGENS
+#### CREATE TABLE [HistoricoViagens]
 ##### (
 #####  [IdNave] INT NOT NULL ,
 #####  [IdPiloto] INT NOT NULL ,
